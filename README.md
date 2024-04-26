@@ -5,7 +5,7 @@ erDiagram
         text title 
         date held_date 
         text theme 
-        conference_id FK
+        UUID conference_id FK
     }
 
     conferences {
