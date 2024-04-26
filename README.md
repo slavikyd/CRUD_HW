@@ -25,5 +25,5 @@ erDiagram
     }
     conferences ||--o{ ConferencesParticipants : ""
     ConferencesParticipants }o--|| participants : ""
-    conferences |o{ performances : ""
+    conferences |--o{ performances : ""
 ```
