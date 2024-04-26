@@ -2,21 +2,21 @@
 erDiagram
     performances {
         UUID id PK
-        title
-        held_date
-        theme
+        title text
+        held_date date
+        theme text
         conference_id FK
     }
     conferences {
         UUID id PK
-        held_date
-        address
+        held_date date
+        address text
     }
     participants {
         UUID id PK
-        string(150) first_name
-        string(150) last_name
-        date birth_date
+        first_name text
+        last_name text
+        birth_date date
     }
     ConferencesParticipants {
         UUID conference_id FK
