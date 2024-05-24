@@ -77,11 +77,11 @@ def update_conferences():
     id_ = body['id']
     title = body['title']
     held_date = body['held_date']
-    address = body['adress']
+    address = body['address']
 
-    body_check(body, [title, held_date, address])
+    
 
-    query = SQL().format(
+    query = SQL(dbquery.QUERY_UPDATE_CONFS).format(
         title=Literal(title),
         held_date=Literal(held_date),
         address=Literal(address),
@@ -122,6 +122,31 @@ def delete_conference():
         return '', http_code.NOT_FOUND
 
     return '', http_code.NO_CONTENT
+
+
+
+@app.get('/conferences/find_by_title')
+def get_conference_by_title():
+    title = request.args.get('title')
+
+    query = SQL(dbquery.FIND_BY_TITLE_QUERY).format(title=Literal('%' + title + '%'))
+
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+        result = cursor.fetchall()
+
+    return result
+
+
+@app.get('/conferences/find_by_date')
+def get_film_by_year():
+    held_date = request.args.get('held_date')
+    query = SQL(dbquery.FIND_BY_DATE_QUERY).format(held_date=Literal(held_date))
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+        result = cursor.fetchall()
+    return result
+
 
 
 if __name__ == '__main__':

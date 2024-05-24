@@ -52,3 +52,13 @@ returning id
 
 QUERY_DELETE_CONF = 'delete from api_data.conferences where id = {id} returning id'
 QUERY_DELETE_CONF_LINKS = 'delete from api_data.conference_to_participant where conference_id = {id}'
+FIND_BY_TITLE_QUERY = """
+select id, title, held_date, address
+from api_data.conferences
+where title ilike {title}
+"""
+FIND_BY_DATE_QUERY = """
+select id, title, held_date, address
+from api_data.conferences
+where held_date = {held_date}
+"""
